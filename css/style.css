@@ -24,5 +24,21 @@
 	color: white;
 	font-size: 200%;
 	font-family: Lato;
-
 }
+
+#text-big {
+	position: relative;
+    left: 60px;
+	color: green;
+	font-size: 150%;
+	font-family: Lato;
+}
+
+#text-small {
+	position: relative;
+    left: 60px;
+	color: green;
+	font-size: 70%;
+	font-family: Lato;
+}
+
