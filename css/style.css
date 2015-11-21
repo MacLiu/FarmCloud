@@ -20,10 +20,9 @@
   font-family: Roboto;
 }
 
-#navbar-title {
-	color: white;
-	font-size: 200%;
-	font-family: Lato;
+#navbar-logo {
+  width: auto;
+  height: 36px;
 }
 
 #text-big {
@@ -41,4 +40,6 @@
 	font-size: 70%;
 	font-family: Lato;
 }
+
+#navbar-back
 
