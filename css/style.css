@@ -1,1 +1,7 @@
 /* This is our styling */
+#navbar-title {
+	color: blue;
+	font-size: 200%;
+	font-family: Lato;
+
+}
