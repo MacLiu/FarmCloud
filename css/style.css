@@ -19,3 +19,10 @@
 .pac-container {
   font-family: Roboto;
 }
+
+#navbar-title {
+	color: white;
+	font-size: 200%;
+	font-family: Lato;
+
+}
