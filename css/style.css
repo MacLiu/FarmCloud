@@ -29,7 +29,7 @@
 #text-big {
 	position: relative;
     left: 60px;
-	color: green;
+	color: white;
 	font-size: 150%;
 	font-family: Lato;
 }
@@ -37,7 +37,7 @@
 #text-small {
 	position: relative;
     left: 60px;
-	color: green;
+	color: white;
 	font-size: 70%;
 	font-family: Lato;
 }
