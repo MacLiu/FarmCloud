@@ -23,7 +23,7 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/ie-emulation-modes-warning.js"></script>
-
+    <script type="text/javascript" src="proj4js/dist/proj4.js"></script>
 
     <style type="text/css">
       html, body { height: 100%; margin: 0; padding: 0; }
@@ -111,9 +111,39 @@
             map.fitBounds(bounds);
           });
 
-        // Set the Polygons and Markers
-        var rectangle = new google.maps.Rectangle();
+        // Send networking request for County lands
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", 'https://raw.githubusercontent.com/dongparty/KS-kml/master/clu_public_a_ks067dbf.json', false );
+        xmlHttp.send( null );
+        var res = xmlHttp.responseText;
 
+        var obj = JSON.parse(res)[0]['features'];
+        for (var i = 0; i < obj.length; i++) {
+          var coords = obj[i]['geometry']['coordinates'][0];
+          var shapeCoords = [];
+          for (var j = 0; j < coords.length; j++) {
+            
+             var x = coords[j][0];
+             var y = coords[j][1];
+             var utm = "+proj=utm +zone=14";
+            var wgs84 = "+proj=longlat +ellps=NAD83 +datum=NAD83 +no_defs";
+            var latLong = proj4(utm,wgs84,[165.32, 0.4]);
+            console.log(latLong);
+            break;
+            //shapeCoords.push({lat: latLong[0], lng:  latLong[1]});
+          }
+          var shape = new google.maps.Polygon({
+            paths: shapeCoords,
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35
+          });
+          shape.setMap(map);
+        };
+
+        // Set the Polygons and Markers
          var triangleCoords = [
           {lat: 42.774, lng: -93.190},
           {lat: 41.466, lng: -94.118},
@@ -145,6 +175,10 @@
         marker.addListener('click', function() {
           infowindow.open(map, marker);
         });
+          var ctaLayer = new google.maps.KmlLayer({
+    url: 'http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml',
+    map: map
+  });
     }
     </script>
     <script async defer
